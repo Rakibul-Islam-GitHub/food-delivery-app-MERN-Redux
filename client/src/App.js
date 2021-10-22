@@ -1,9 +1,16 @@
 import React from 'react';
+import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
 
 function App() {
   return (
     <>
-      <h1 className="text-center">hello world</h1>
+    <Header></Header>
+     <div className="main">
+     <p className="text-center main">Main Body</p>
+
+     </div>
+      <Footer></Footer>
     </>
   );
 }

@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import ItemList from './ItemList/ItemList';
 import { Col, Row } from 'react-bootstrap';
-import axios from 'axios'
+import {useDispatch, useSelector} from 'react-redux'
+import { getItems } from '../../redux/actions/itemActions';
 
 const Home = () => {
-  const [items, setItems] = useState([])
+  const dispatch= useDispatch()
+
+  const itemList= useSelector(state=> state.itemList)
+  const {items, error, loading} = itemList
+  
+  console.log(itemList)
 
   useEffect(() => {
 
-    const loadAllItems= async ()=>{
-        const res= await axios.get('/api/products')
-        setItems(res.data)
-    }
-    loadAllItems();
+    dispatch(getItems())
 
 
-  },[])
+  },[dispatch])
     return (
         <>
 

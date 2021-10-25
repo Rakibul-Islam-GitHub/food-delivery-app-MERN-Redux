@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Col, Image, ListGroup, Row } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import items from '../../items';
+import axios from 'axios'
+
 import Rating from '../Home/ItemList/Rating';
 
 
 const ItemDetails = () => {
-    const {id}= useParams()
-    const item= items.find(item=>item._id === id)
+  const [item, setItem] = useState([])
+
+  const {id} = useParams()
+
+  useEffect(() => {
+
+    const itemByID= async ()=>{
+        const {data}= await axios.get(`/api/products/${id}`)
+        setItem(data)
+    }
+    itemByID();
+
+
+  },[id])
+    
     return (
       <>
         <Link className="btn btn-dark my-2" to="/">

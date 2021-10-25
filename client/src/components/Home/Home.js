@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ItemList from './ItemList/ItemList';
-import items from '../../../src/items'
 import { Col, Row } from 'react-bootstrap';
+import axios from 'axios'
 
 const Home = () => {
+  const [items, setItems] = useState([])
+
+  useEffect(() => {
+
+    const loadAllItems= async ()=>{
+        const res= await axios.get('/api/products')
+        setItems(res.data)
+    }
+    loadAllItems();
+
+
+  },[])
     return (
         <>
 

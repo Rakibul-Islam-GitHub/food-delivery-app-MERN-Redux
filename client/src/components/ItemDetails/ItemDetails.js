@@ -100,7 +100,7 @@ const history= useHistory()
                     type="number"
                     value={quantity}
                     min='1'
-                    readonly
+                    readOnly
                   />
                   <button  disabled={quantity ===item.countInStock || item.countInStock===0}
                     className="quantity-input__modifier quantity-input__modifier--right"

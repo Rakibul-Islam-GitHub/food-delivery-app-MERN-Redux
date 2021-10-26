@@ -21,3 +21,18 @@ a{
 .nav-link {
   color: rgb(255 255 255) !important;
 }
+
+.quantity-select{
+  width: 90%;
+    height: calc(1.2em + 1.2rem + 1px);
+    padding: 0;
+}
+.remove-icon{
+  font-size: 16px;
+  color: chocolate;
+    margin-top: -8px !important;
+}
+h2{
+  font-size:1.4rem;
+  padding: 0.5rem 0;
+}

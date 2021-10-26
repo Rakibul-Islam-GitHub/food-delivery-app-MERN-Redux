@@ -9,7 +9,7 @@ export const addToCart= (id, quantity) => async(dispatch, getState) => {
              type: ITEM_ADD_TO_CART, 
              payload: { 
                  id: data._id, 
-                 name: data._name, 
+                 name: data.name, 
                  image: data.image, 
                  price: data.price, 
                  countInStock: data.countInStock, 
@@ -18,7 +18,26 @@ export const addToCart= (id, quantity) => async(dispatch, getState) => {
              } 
             });
 
-            localStorage.setItem('cart', JSON.stringify(getState().cart.cartItems))
+            localStorage.setItem('foodcart', JSON.stringify(getState().cart.cartItems))
         
     
 }
+
+/// remove from the cart
+
+export const removeFromCart= (id) => async(dispatch, getState) => {
+
+    console.log(id);
+         dispatch({
+              type: ITEM_REMOVE_FROM_CART, 
+              payload: { 
+                  id: id
+                 
+ 
+              } 
+             });
+ 
+             localStorage.setItem('foodcart', JSON.stringify(getState().cart.cartItems))
+         
+     
+ }

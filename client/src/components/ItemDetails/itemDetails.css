@@ -1,0 +1,47 @@
+.quantity-input {
+    margin-right: 1px;
+    margin-left: 1px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 3px;
+    height: 40px;
+}
+.quantity-input:focus {
+    background: red;
+}
+.quantity-input__modifier, .quantity-input__screen {
+    user-select: none;
+    outline: none;
+}
+.quantity-input__modifier {
+    padding: 0.7rem;
+    width: 3rem;
+    font-size: 1.5rem;
+    background: #f3f3f3;
+    
+    border: 0 solid #dbdbdb;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .6);
+    cursor: pointer;
+}
+.quantity-input__modifier:hover {
+    background: #dadada;
+    color: #555;
+}
+.quantity-input__modifier--left {
+    border-radius: 3px 0 0 3px;
+}
+.quantity-input__modifier--right {
+    border-radius: 0 3px 3px 0;
+}
+.quantity-input__screen {
+    width: 4rem;
+    padding: 0.7rem;
+    font-size: 1rem;
+    border: 0;
+    border-top: 0 solid #dbdbdb;
+    border-bottom: 0 solid #dbdbdb;
+    text-align: center;
+}

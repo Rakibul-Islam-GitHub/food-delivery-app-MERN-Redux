@@ -5,7 +5,7 @@ import axios from "axios"
 export const addToCart= (id, quantity) => async(dispatch, getState) => {
 
    const {data} = await axios.get(`/api/products/${id}`)
-        dispatch({
+         dispatch({
              type: ITEM_ADD_TO_CART, 
              payload: { 
                  id: data._id, 
@@ -27,7 +27,7 @@ export const addToCart= (id, quantity) => async(dispatch, getState) => {
 
 export const removeFromCart= (id) => async(dispatch, getState) => {
 
-    console.log(id);
+    
          dispatch({
               type: ITEM_REMOVE_FROM_CART, 
               payload: { 

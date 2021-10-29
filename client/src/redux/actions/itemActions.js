@@ -5,7 +5,7 @@ const getItems = ()=> async(dispatch)=> {
     try {
         dispatch({type:ITEM_LIST_REQUEST})
         const {data} = await axios.get('/api/products')
-        console.log('from item action: ',data)
+        // console.log('from item action: ',data)
         dispatch({type:ITEM_LIST_SUCCESS, payload: data})
         
     } catch (error) {

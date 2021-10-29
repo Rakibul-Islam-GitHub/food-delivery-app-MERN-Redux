@@ -24,3 +24,4 @@ yarn-error.log*
 
 /src/items.js
 /public/images
+/src/components/Login/firebaseConfig.js

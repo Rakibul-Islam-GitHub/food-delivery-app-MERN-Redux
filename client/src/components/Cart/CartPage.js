@@ -16,8 +16,11 @@ const CartPage = () => {
   
    useEffect(() =>{
 
-    dispatch(addToCart(id, qty))
-   },[dispatch, qty, id])
+    if (location.search) {
+      dispatch(addToCart(id, qty))
+      
+    }
+   },[dispatch, qty, id, location.search])
 
    const removeCartItem= (id)=>{
        console.log('clicked')

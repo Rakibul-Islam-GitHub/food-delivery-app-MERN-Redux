@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import ItemList from './ItemList/ItemList';
 import { Col, Row } from 'react-bootstrap';
 import {useDispatch, useSelector} from 'react-redux'
@@ -11,7 +11,6 @@ const Home = () => {
   const itemList= useSelector(state=> state.itemList)
   const {items, error, loading} = itemList
   
-  console.log(itemList)
 
   useEffect(() => {
 
@@ -27,9 +26,10 @@ const Home = () => {
         : error ? <h4>{error}</h4> : 
          <Row>
          {items.map(item => 
-             (<Col sm={12} md={6} lg={4} xl={3}>
+         
+             (<Col key={item._id} sm={12} md={6} lg={4} xl={3}>
                
-               <ItemList  item={item} key={item._id} />
+               <ItemList  item={item}  />
              </Col>)
          )}
        </Row>

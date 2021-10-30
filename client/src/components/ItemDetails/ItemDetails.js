@@ -83,7 +83,7 @@ const history= useHistory()
                   <Row>
                     <Col>Status:</Col>
                     <Col>
-                      {item.countInStock === 0 ? "Out of Stock" : `In Stock(${item.countInStock})`}
+                      {item.countInStock === 0 ?  <p style={{color:'red'}}>Out of stock</p> : `In Stock(${item.countInStock})`}
                     </Col>
                   </Row>
                 </ListGroup.Item>

@@ -36,7 +36,7 @@ const CartPage = () => {
         <Col md={8}>
         <h4>Shopping Cart</h4>
           {cartItems.length === 0 ? (
-            <h3>Your cart is empty</h3>
+            <h6 style={{color: 'chocolate'}}>Your cart is empty! Add some food first..</h6>
           ) : (
             <ListGroup variant="flush">
               {cartItems.map((item) => (

@@ -14,7 +14,7 @@ import "./login.css";
 import firebaseConfig from "./firebaseConfig";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../redux/actions/userActions";
+import { login, register } from "../../redux/actions/userActions";
 import Loader from "../spinner/Loader";
 // Initialize Firebase
 
@@ -58,13 +58,13 @@ useEffect(() => {
         auth.currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
           
           
-          // localStorage.setItem("user", email);
+           localStorage.setItem("userInfo",{...userdetails, token:idToken});
           // setloggedInUser(userdetails);
         }).catch(function(error) {
           alert(error.message);
         });
 
-        // history.replace(from);
+        history.replace(from);
         console.log(userdetails)
         
       })
@@ -102,23 +102,12 @@ useEffect(() => {
         setIsError({ emailError: false, password: true });
         document.getElementById("loginForm").reset();
         console.log(displayName, email, password);
-        const auth = getAuth();
 
-        createUserWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
-            // Signed in
-            // const user = userCredential.user;
-            setUser(!isNewUser);
-            alert("New Account Created Successfully! Please Login");
-            // ...
-          })
-          .catch((error) => {
-            // const errorCode = error.code;
-            const errorMessage = error.message;
-            alert(errorMessage);
-            console.log(error);
-            // ..
-          });
+        // dispatch user register reducer
+        await dispatch(register(displayName, email, password))
+        history.push('/');
+
+        
       } else {
         setIsError({ emailError: true, password: true });
       }

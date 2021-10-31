@@ -6,8 +6,9 @@ import Home from './components/Home/Home';
 import ItemDetails from './components/ItemDetails/ItemDetails';
 import CartPage from './components/Cart/CartPage';
 import Login from './components/Login/Login';
-import Checkout from './components/Checkout/Checkout';
 import PrivateRoute from './components/Login/PrivateRoute';
+import Shipping from './components/ShippingPages/Shipping';
+import PaymentMethod from './components/ShippingPages/PaymentMethod';
 
 function App() {
   return (
@@ -23,8 +24,11 @@ function App() {
         <Route  path="/cart/:id?">
           <CartPage></CartPage>
         </Route>
-        <PrivateRoute path="/checkout">
-          <Checkout></Checkout>
+        <PrivateRoute path="/shipping">
+          <Shipping></Shipping>
+        </PrivateRoute>
+        <PrivateRoute path="/payment">
+          <PaymentMethod></PaymentMethod>
         </PrivateRoute>
         <Route exact path="/">
           <Home></Home>

@@ -15,7 +15,7 @@ export const userRegister = ('/', asyncHandler(async(req, res) =>{
 const salt = await bcrypt.genSalt(10);
 const password = await bcrypt.hash(req.body.password, salt);
 const user= await User.create({name,email, password})
-console.log(user)
+
 if (user) {
     const token = jwt.sign({ id: user._id , email: user.email}, process.env.JWT_SECRET, {
                     expiresIn: '30d'
@@ -34,14 +34,14 @@ if (user) {
    
 }))
 
-/// user auth 
+/// user login auth 
 /// public route
 /// api/user/login
 export const userAuth= ('/login', asyncHandler(async (req, res)=> {
     const {email, password} = req.body
     try {
         const user=await User.findOne({email})
-        bcrypt.compare(password, user.password, function(err, response) {
+        bcrypt.compare(password, user.password, (err, response) => {
             if (response) {
     
                 if (user) {
@@ -63,11 +63,30 @@ export const userAuth= ('/login', asyncHandler(async (req, res)=> {
                 }
             }else{
                 res.status(401)
-                res.json({error: 'invalid email or password'})
+                console.error('Invalid email or password')
+                res.json('invalid email or password')
+                
 
             }
+         }) 
+        
+        
+        //  function(err, response) {
+
             
-        });
+        //     // if (response) {
+                
+    
+               
+        //     // }
+        //     // else{
+        //     //     res.status(401)
+        //     //     // res.json({error: 'invalid email or password'})
+        //     //     throw new Error('Invalid email or password')
+
+        //     // }
+            
+        // });
     } catch (error) {
         throw new Error('invalid email or password')
     }

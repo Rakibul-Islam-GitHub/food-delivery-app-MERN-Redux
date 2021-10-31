@@ -27,7 +27,7 @@ const CartPage = () => {
        dispatch(removeFromCart(id))
    }
    const checkOutHandler=()=>{
-       history.push('/checkout')
+       history.push('/shipping')
 
    }
     return (

@@ -45,7 +45,9 @@ h2{
     justify-content: flex-start;
     align-items: center;
 }
-
+ footer{
+   margin-top:50px;
+ }
 /* mobile/tablet responsive style */
 @media screen and (max-width: 576px) {
   .order-title{
@@ -57,6 +59,23 @@ h2{
   }
   .itemdetails-title{
     margin-top:  -50px;
+  }
+
+  .quantity-select{
+    width: 50%;
+     
+     margin: 10px 0 10px 0;
+  }
+  .list-group-item .row .col-md-2 img{
+    max-width:60%;
+  }
+  .cartpage-remove-btn{
+    padding-left: 0px;
+    font-size:25px;
+  }
+  .cartpage-remove-btn .remove-icon{
+    
+    font-size:25px;
   }
 
 }

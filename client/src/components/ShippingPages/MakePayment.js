@@ -10,6 +10,7 @@ import Loader from '../spinner/Loader';
 const MakePayment = () => {
     const orderDetails= useSelector(state => state.orderDetails)
     const [isPaid, setIsPaid] = useState(false)
+    let [loadingAfterPay, setloadingAfterPay]= useState(false)
     
     const {loading, error, orderById} = orderDetails
     const order= orderById 
@@ -22,14 +23,16 @@ const MakePayment = () => {
 
     },[orderId, dispatch, isPaid])
 
-    const handlePayment=(orderId)=>{
-      dispatch(makePayment(orderId))
+    const handlePayment= async (orderId)=>{
+      setloadingAfterPay(true)
+     await dispatch(makePayment(orderId))
       setIsPaid(true)
+      setloadingAfterPay(false)
 
     }
     return (
         <>
-      {loading? <Loader></Loader> : error? <h5>{error}</h5> :
+      {loading || loadingAfterPay? <Loader></Loader> : error? <h5>{error}</h5> :
       
       <Row>
           <h3 className='order-title'>Order #{order._id}</h3>
@@ -147,7 +150,7 @@ const MakePayment = () => {
             <ListGroup.Item>
               <Row>
                 <Col>Items</Col>
-                <Col>${order.orderItems[0].price}</Col>
+                <Col>${order.totalPrice- order.taxPrice}</Col>
               </Row>
             </ListGroup.Item>
             <ListGroup.Item>

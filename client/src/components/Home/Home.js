@@ -4,6 +4,7 @@ import { Col, Row } from 'react-bootstrap';
 import {useDispatch, useSelector} from 'react-redux'
 import { getItems } from '../../redux/actions/itemActions';
 import Loader from '../spinner/Loader';
+import HomeHeader from './HomeHeader/HomeHeader';
 
 const Home = () => {
   const dispatch= useDispatch()
@@ -20,7 +21,7 @@ const Home = () => {
   },[dispatch])
     return (
         <>
-
+        <HomeHeader></HomeHeader>
         <h1 className="text-center mb-3">Latest Food Items</h1>
         {loading ? <Loader/>
         : error ? <h4>{error}</h4> : 

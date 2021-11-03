@@ -63,7 +63,7 @@ const CartPage = () => {
 
                         </Form.Control>
                     </Col>
-                    <Col md={2}>
+                    <Col md={2} className="cartpage-remove-btn">
                         <Button className='remove-icon' type='button' variant='light' onClick={()=>removeCartItem(item.id)}>
                             <i className='remove-icon fas fa-trash'></i>
 

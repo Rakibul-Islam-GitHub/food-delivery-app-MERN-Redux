@@ -36,3 +36,28 @@ h2{
   font-size:1.4rem;
   padding: 0.5rem 0;
 }
+
+/* makepayment.js */
+.shipping-heading{
+  display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* mobile/tablet responsive style */
+@media screen and (max-width: 576px) {
+  .order-title{
+    font-size:  15px !important;
+    margin-left: 15px;
+  }
+  .price{
+    margin-top: 2px;
+  }
+  .itemdetails-title{
+    margin-top:  -50px;
+  }
+
+}
+

@@ -62,3 +62,19 @@ export const getOrders = ('/', asyncHandler(async (req, res)=>{
       throw new Error("Order History not found...");
     }
 }))
+
+/// make payment : change ispaid true
+export const makePayment = ('/:orderId', asyncHandler(async (req, res)=>{
+
+  
+  
+  const updatePayment = await Order.findOneAndUpdate({_id:req.params.orderId}, {isPaid:true}, {
+    new: true
+  })
+    if (updatePayment.isPaid) {
+      res.json(updatePayment.isPaid);
+    } else {
+      res.status(404);
+      throw new Error("Order Details not found...");
+    }
+}))

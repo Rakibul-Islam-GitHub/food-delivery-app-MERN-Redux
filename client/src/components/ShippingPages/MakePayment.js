@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, Col, Image, ListGroup, Row, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import {useParams} from 'react-router'
 import { Link } from 'react-router-dom';
-import { getOrderDetails } from '../../redux/actions/orderActions';
+import Moment from 'react-moment';
+import { getOrderDetails, makePayment } from '../../redux/actions/orderActions';
 import Loader from '../spinner/Loader';
 
 const MakePayment = () => {
     const orderDetails= useSelector(state => state.orderDetails)
+    const [isPaid, setIsPaid] = useState(false)
     
     const {loading, error, orderById} = orderDetails
     const order= orderById 
@@ -18,17 +20,19 @@ const MakePayment = () => {
         dispatch(getOrderDetails(orderId))
 
 
-    },[orderId, dispatch])
+    },[orderId, dispatch, isPaid])
 
-    const handlePayment=()=>{
-      console.log('clicked');
+    const handlePayment=(orderId)=>{
+      dispatch(makePayment(orderId))
+      setIsPaid(true)
+
     }
     return (
         <>
       {loading? <Loader></Loader> : error? <h5>{error}</h5> :
       
       <Row>
-          <h3 className='order-title'>Order {order._id}</h3>
+          <h3 className='order-title'>Order #{order._id}</h3>
       <Col md={8}>
         <ListGroup variant='flush'>
           <ListGroup.Item>
@@ -72,11 +76,17 @@ const MakePayment = () => {
              <Col sm={4} style={{paddingLeft:'0px'}}>
              <h2>Payment</h2>
              </Col>
-             <Col sm={4}>
+             <Col sm={8}>
              {order.isPaid ? (
-              <p variant='success'>
-                Delivered on {order.paidAt}
-              </p>
+              
+              <div style={{marinBottom: '0px'}} className="alert alert-success" role="alert">
+              
+                Paid On{' '} 
+                <Moment format="DD-MM-YYYY HH:mm A">
+                {order.updatedAt}
+                </Moment>
+              
+            </div>
             ) : (
               <div style={{marinBottom: '0px'}} className="alert alert-danger" role="alert">
   Not Paid!
@@ -104,7 +114,7 @@ const MakePayment = () => {
                 {order.orderItems.map((item, index) => (
                   <ListGroup.Item key={index}>
                     <Row>
-                      <Col sm={4} md={1}>
+                      <Col xs={6} md={1} >
                         <Image
                           src={item.image}
                           alt={item.name}
@@ -117,7 +127,7 @@ const MakePayment = () => {
                           {item.name}
                         </Link>
                       </Col>
-                      <Col md={4}>
+                      <Col className='price' xs={6}>
                         {item.quantity} x ${item.price} = ${item.quantity * item.price}
                       </Col>
                     </Row>
@@ -129,7 +139,7 @@ const MakePayment = () => {
         </ListGroup>
       </Col>
       <Col md={4}>
-        <Card>
+        <Card className="mt-3 mb-5">
           <ListGroup variant='flush'>
             <ListGroup.Item>
               <h2>Order Summary</h2>
@@ -164,7 +174,7 @@ const MakePayment = () => {
                   <Button
                     type='button'
                     className='btn btn-block'
-                    onClick={handlePayment}
+                    onClick={()=>handlePayment(order._id)}
                     
                   >
                     Pay Now

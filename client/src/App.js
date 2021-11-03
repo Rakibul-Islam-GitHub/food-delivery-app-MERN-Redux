@@ -9,6 +9,9 @@ import Login from './components/Login/Login';
 import PrivateRoute from './components/Login/PrivateRoute';
 import Shipping from './components/ShippingPages/Shipping';
 import PaymentMethod from './components/ShippingPages/PaymentMethod';
+import ConfirmOrder from './components/ShippingPages/ConfirmOrder';
+import MakePayment from './components/ShippingPages/MakePayment';
+import OrderHistory from './components/OrderHistory/OrderHistory';
 
 function App() {
   return (
@@ -29,6 +32,15 @@ function App() {
         </PrivateRoute>
         <PrivateRoute path="/payment">
           <PaymentMethod></PaymentMethod>
+        </PrivateRoute>
+        <PrivateRoute path="/confirm">
+          <ConfirmOrder></ConfirmOrder>
+        </PrivateRoute>
+        <PrivateRoute path="/order/:id">
+          <MakePayment></MakePayment>
+        </PrivateRoute>
+        <PrivateRoute path="/orderhistory">
+          <OrderHistory></OrderHistory>
         </PrivateRoute>
         <Route exact path="/">
           <Home></Home>

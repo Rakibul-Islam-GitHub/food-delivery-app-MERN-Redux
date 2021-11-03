@@ -50,7 +50,7 @@ const history= useHistory()
               ></Image>
             </Col>
 
-            <Col md={3}>
+            <Col md={3} className="itemdetails-title">
               <ListGroup variant="flush">
                 <ListGroup.Item variant="info">
                   <h4>{item.name}</h4>
@@ -62,7 +62,7 @@ const history= useHistory()
                   ></Rating>
                 </ListGroup.Item>
                 <ListGroup.Item>Price: ${item.price}</ListGroup.Item>
-                <ListGroup.Item>
+                <ListGroup.Item className='mb-4'>
                   Description: ${item.description}
                 </ListGroup.Item>
               </ListGroup>

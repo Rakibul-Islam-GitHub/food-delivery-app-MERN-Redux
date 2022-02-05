@@ -43,9 +43,10 @@ This is a food delivery web application that offers various items of food from a
 - Font Awesome
 - nodejs
 - express
-- MVC pattern
+- Axios
 - mongodb
 - mongoose
+- MVC pattern
 - JWT token
 
 
